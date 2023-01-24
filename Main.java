@@ -12,7 +12,13 @@ public class Main {
             //makes shuffled deck.
             myDeck.makeDeck();
             myDeck.startGame();
-            System.out.println();
+            if(myDeck.getPlayerTotal() == 21){
+                myDeck.checkBlackJack();
+            }
+            else {
+                myDeck.standOrHit();
+                System.out.println();
+            }
             System.out.println("Play again? y/n");
             System.out.println();
             if(input.next().equals("n")){
