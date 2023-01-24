@@ -12,14 +12,14 @@ public class Deck {
     private int dealerTotal;
     private Scanner input = new Scanner(System.in);
 
-    //Method to run dialog between dealer and player. Right now just getting it to count hand totals properly. Next step is asking to hit or stand.
-    public void startGame() {
+    // deals first hand to dealer and player.
+    public void startGame() throws InterruptedException  {
         dealerTotal = 0;
         playerTotal = 0;
         playerHand = new ArrayList<>();
         dealerHand = new ArrayList<>();
         System.out.println("Dealers hand:");
-
+        Thread.sleep(750);
         dealerHand.add(deal.pop());
         dealerHand.add(deal.pop());
 
@@ -29,6 +29,7 @@ public class Deck {
         System.out.println("Hole card");
         System.out.println(toString(dealerHand.get(1)));
         System.out.println();
+        Thread.sleep(750);
 
         System.out.println("Your Hand:");
         playerHand.add(deal.pop());
@@ -41,16 +42,20 @@ public class Deck {
         }
 
         System.out.println("Player total: " + playerTotal);
+        Thread.sleep(750);
     }
 
-    public void checkBlackJack() {
+    // checks if player has blackjack and tells who will win, lose, or tie
+    public void checkBlackJack() throws InterruptedException {
         System.out.println();
         System.out.println("Black Jack!");
+        Thread.sleep(750);
         System.out.println();
         System.out.println("Dealers hand:");
         System.out.println(toString(dealerHand.get(0)));
         System.out.println(toString(dealerHand.get(1)));
         System.out.println("Dealer Total: " + dealerTotal);
+        Thread.sleep(750);
         if (dealerTotal != playerTotal) {
             System.out.println();
             System.out.println("congrats you win!");
@@ -61,8 +66,8 @@ public class Deck {
         }
     }
 
-        // Stand and hit phase.
-    public void standOrHit(){
+    // until 21 is reached the player will be asked to stand or hit
+    public void standOrHit() throws InterruptedException {
         while(playerTotal < 21) {
             System.out.println();
             System.out.println("Stand or Hit (s/h)");
@@ -73,17 +78,20 @@ public class Deck {
                     dealerTotal += dealerAddPoints(dealerHand.get(dealerHand.size() - 1));
                 }
                 System.out.println();
+                Thread.sleep(750);
                 System.out.println("Dealers Hand");
                 for (String[] object : dealerHand) {
                     System.out.println(toString(object));
                 }
                 System.out.println("Dealer Total: " + dealerTotal);
                 System.out.println();
+                Thread.sleep(750);
                 System.out.println("Your Hand");
                 for (String[] object : playerHand) {
                     System.out.println(toString(object));
                 }
                 System.out.println("Player total: " + playerTotal);
+                Thread.sleep(750);
                 if (dealerTotal <= 21) {
                     if (playerTotal == dealerTotal) {
                         System.out.println();
@@ -126,6 +134,7 @@ public class Deck {
                 }
                 playerTotal += addPoints(playerHand.get(playerHand.size() - 1));
                 System.out.println("Player total: " + playerTotal);
+                Thread.sleep(750);
                 if (playerTotal == 21) {
                     System.out.println();
                     System.out.println("Dealers Hand:");
@@ -133,6 +142,7 @@ public class Deck {
                         System.out.println(toString(object));
                     }
                     System.out.println("Dealer total:" + dealerTotal);
+                    Thread.sleep(750);
                     if (dealerTotal != playerTotal) {
                         System.out.println();
                         System.out.println("you win!");
@@ -145,6 +155,7 @@ public class Deck {
                         }
                         System.out.println("Dealer total:" + dealerTotal);
                         System.out.println();
+                        Thread.sleep(750);
                         System.out.println("Push!");
                     }
 
@@ -162,7 +173,7 @@ public class Deck {
         return playerTotal;
     }
 
-    // adds point value of card to hand total.
+    // adds point value of card to hand total for player.
     public int addPoints(String[]Cards){
         switch(Cards[1]){
             case "Ace":
@@ -192,6 +203,8 @@ public class Deck {
         }
         return 10;
     }
+
+    // adds point value of card to dealer.
     public int dealerAddPoints(String[]Cards){
         switch(Cards[1]){
             case "Ace":
@@ -225,6 +238,7 @@ public class Deck {
         }
         return 10;
     }
+
     //Returns Stack. First makes a shuffled ArrayList, then adds each element into stack.
     public Stack makeDeck (){
         deck = new ArrayList<String[]>();
@@ -260,7 +274,7 @@ public class Deck {
         return deal;
     }
 
-    //Prints card out in String form
+    //Prints card out as String
     public String toString(String[]cards){
         return cards[1] + " of " + cards[0];
     }
