@@ -5,12 +5,19 @@ import java.util.Scanner;
 public class Deck {
 
     public  ArrayList<String[]> deck;
+
     private String suit;
-    public Stack<String[]> deal;
-    public ArrayList<String[]> playerHand;
+
+    private Stack<String[]> deal;
+
+    private ArrayList<String[]> playerHand;
+
     public ArrayList<String[]> dealerHand;
+
     private int playerTotal;
+
     private int dealerTotal;
+
     private Scanner input;
 
     public Deck(){
