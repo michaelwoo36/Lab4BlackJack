@@ -5,19 +5,23 @@ import java.util.Scanner;
 public class Deck {
     public  ArrayList<String[]> deck;
     private String suit;
-    public Stack<String[]> deal = new Stack<>();
+    public Stack<String[]> deal;
     public ArrayList<String[]> playerHand;
     public ArrayList<String[]> dealerHand;
     private int playerTotal;
     private int dealerTotal;
-    private Scanner input = new Scanner(System.in);
+    private Scanner input;
+
+    public Deck(){
+        deal = new Stack<>();
+        input = new Scanner(System.in);
+        playerHand = new ArrayList<>();
+        dealerHand = new ArrayList<>();
+
+    }
 
     // deals first hand to dealer and player.
     public void startGame() throws InterruptedException  {
-        dealerTotal = 0;
-        playerTotal = 0;
-        playerHand = new ArrayList<>();
-        dealerHand = new ArrayList<>();
         System.out.println("Dealers hand:");
         Thread.sleep(750);
         dealerHand.add(deal.pop());

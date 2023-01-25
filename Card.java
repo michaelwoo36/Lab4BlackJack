@@ -11,6 +11,7 @@ public class Card {
 
     // returns array filled with face and suit of card object created
     public String[] getCard() {
+
         String []card = new String[2];
         card[0] = suit;
         card[1] = face;
